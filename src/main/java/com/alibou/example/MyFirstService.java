@@ -2,6 +2,7 @@ package com.alibou.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +20,12 @@ public class MyFirstService {
     return "the dependency is saying : " + myFirstClass.sayHello();
   }
 
+  public String getJavaVersion() {
+    return environment.getProperty("java.version");
+  }
+
   @Autowired
-  public void setEnviroment(Environment environment) {
+  public void setEnvironment(Environment environment) {
     this.environment = environment;
   }
 }
