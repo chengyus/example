@@ -8,7 +8,6 @@ public class MyFirstService {
 
   private final MyFirstClass myFirstClass;
 
-  @Autowired
   public MyFirstService(MyFirstClass myFirstClass) {
     this.myFirstClass = myFirstClass;
   }
