@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class MyFirstService {
 
   private MyFirstClass myFirstClass;
+  private Environment environment;
 
   @Autowired
   public void setMyFirstClass(@Qualifier("bean1") MyFirstClass myFirstClass) {
@@ -16,5 +17,10 @@ public class MyFirstService {
 
   public String tellAStory() {
     return "the dependency is saying : " + myFirstClass.sayHello();
+  }
+
+  @Autowired
+  public void setEnviroment(Environment environment) {
+    this.environment = environment;
   }
 }
