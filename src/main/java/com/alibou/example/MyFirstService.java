@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 public class MyFirstService {
 
   private final MyFirstClass myFirstClass;
-  @Value("Hello Alibou students")
+  @Value("${my.custom.property}")
   private String customProperty;
   @Value("${my.prop}")
   private String customPropertyFromAnotherFile;
   @Value("${my.prop.2}")
   private String customPropertyFromAnotherFile2;
-  @Value("123")
+  @Value("${my.custom.property.int}")
   private Integer customerPropertyInt;
 
   public MyFirstService(@Qualifier("bean1") MyFirstClass myFirstClass) {
