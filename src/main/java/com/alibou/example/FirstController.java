@@ -1,8 +1,6 @@
 package com.alibou.example;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 public class FirstController {
@@ -16,6 +14,4 @@ public class FirstController {
   public String post(@RequestBody String message) {
     return "Request accepted and message is : " + message;
   }
-
-  
 }
