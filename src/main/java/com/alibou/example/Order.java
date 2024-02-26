@@ -1,8 +1,13 @@
 package com.alibou.example;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
+  @JsonProperty("c-name")
   private String customerName;
+  @JsonProperty("p-name")
   private String productName;
+  @JsonProperty("q")
   private int quantity;
 
   public String getCustomerName() {
