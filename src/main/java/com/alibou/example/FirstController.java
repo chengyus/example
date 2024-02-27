@@ -19,4 +19,9 @@ public class FirstController {
   public String post(@RequestBody Order order) {
     return "Request accepted and message is : " + order.toString();
   }
+
+  @PostMapping("/post-order-record")
+  public String postRecord(@RequestBody OrderRecord order) {
+    return "Request accepted and message is : " + order.toString();
+  }
 }
