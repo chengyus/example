@@ -24,4 +24,9 @@ public class FirstController {
   public String postRecord(@RequestBody OrderRecord order) {
     return "Request accepted and message is : " + order.toString();
   }
+
+  @GetMapping("/hello/{user-name}")
+  public String pathVar(@PathVariable("user-name") String userName) {
+    return "my value = " + userName;
+  }
 }
