@@ -17,6 +17,10 @@ public class Student {
   @Column(unique = true)
   private String email;
   private int age;
+  @Column(
+    updatable = false
+  )
+  private String some_column;
 
   public Student() {
   }
