@@ -10,9 +10,13 @@ import jakarta.persistence.Table;
 public class Student {
   @Id
   private Integer id;
-  @Column(name = "c_fname")
+  @Column(
+    name = "c_fname",
+    length = 20
+  )
   private String firstname;
   private String lastname;
+  @Column(unique = true)
   private String email;
   private int age;
 
