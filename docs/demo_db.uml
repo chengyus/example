@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.DATABASE:demo_db</OriginalElement>
+  <nodes>
+    <node x="112.23455233291293" y="83.20302648171497">32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.t_student</node>
+    <node x="-170.3341740226986" y="131.20302648171497">32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.school</node>
+    <node x="415.0996216897856" y="-18.199243379571215">32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.student_profile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.student_profile" target="32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.t_student" relationship="REFERENCES">
+      <point x="0.0" y="-56.0" />
+      <point x="497.0996216897856" y="330.0" />
+      <point x="198.23455233291293" y="330.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.t_student" target="32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.school" relationship="REFERENCES">
+      <point x="0.0" y="-92.0" />
+      <point x="198.23455233291293" y="48.0" />
+      <point x="-95.33417402269859" y="48.0" />
+      <point x="0.0" y="44.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="159.26860025220674" y="198.99999999999994" />
+  <SelectedNodes>
+    <node>32c30e75-afb5-4b3b-b0dd-d5269ee82e0a.TABLE:demo_db.public.t_student</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

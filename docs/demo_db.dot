@@ -1,0 +1,16 @@
+digraph "demo_db" {
+
+splines  = ortho;
+fontname = "Inconsolata";
+
+node [colorscheme = ylgnbu4];
+edge [colorscheme = dark28, dir = both];
+
+school          [shape = record, pos = "-1.949,2.884!"    , label = "{ school |  name : varchar(255)\l| id : integer\l }"];
+student_profile [shape = record, pos = "4.972,5.921!"     , label = "{ student_profile |  student_id : integer\l  bio : varchar(255)\l| id : integer\l }"];
+t_student       [shape = record, pos = "1.657,4.060!"     , label = "{ t_student |  age : integer\l  school_id : integer\l  c_fname : varchar(20)\l  email : varchar(255)\l  lastname : varchar(255)\l| id : integer\l }"];
+
+student_profile -> t_student       [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "student_id:id", headlabel = ""];
+t_student       -> school          [color = "#595959", style = solid , arrowtail = none    , arrowhead = normal  , taillabel = "", label = "school_id:id", headlabel = ""];
+
+}
