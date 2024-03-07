@@ -1,8 +1,11 @@
 package com.alibou.example;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class SchoolController {
@@ -18,7 +21,7 @@ public class SchoolController {
     return schoolRepository.save(school);
   }
   @GetMapping("/schools")
-  public School create(@RequestBody School school){
-    return schoolRepository.save(school);
+  public List<School> findAll(){
+    return schoolRepository.findAll();
   }
 }
