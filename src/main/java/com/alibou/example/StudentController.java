@@ -8,21 +8,18 @@ import java.util.List;
 @RestController
 public class StudentController {
 
-  private final StudentRepository repository;
-  private final StudentMapper studentMapper;
 
-  public StudentController(StudentRepository repository, StudentMapper studentMapper) {
-    this.repository = repository;
-    this.studentMapper = studentMapper;
+  private final StudentService studentService;
+
+  public StudentController(StudentService studentService) {
+    this.studentService = studentService;
   }
 
   @PostMapping("/students")
-  public StudentResponseDto post(
+  public StudentResponseDto saveStudent(
     @RequestBody StudentDto dto
   ) {
-    var student = studentMapper.toStudent(dto);
-    var savedStudent = repository.save(student);
-    return studentMapper.toStudentResponseDto(savedStudent);
+    return this.studentService.saveStudent(dto);
   }
 
   @GetMapping("/students")
