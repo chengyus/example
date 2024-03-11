@@ -24,17 +24,17 @@ public class StudentController {
 
   @GetMapping("/students")
   public List<Student> findAllStudent() {
-    return repository.findAll();
+    return this.studentService.findAllStudent();
   }
 
   @GetMapping("/students/{student-id}")
   public Student findStudentById(@PathVariable("student-id") Integer id) {
-    return repository.findById(id).orElse(new Student());
+    return this.studentService.findStudentById(id);
   }
 
   @GetMapping("/students/search/{student-name}")
   public List<Student> findStudentsByName(@PathVariable("student-name") String name) {
-    return repository.findAllByFirstnameContaining(name);
+    return this.studentService.findStudentsByName(name);
   }
 
   @DeleteMapping("/students/{student-id}")
@@ -42,6 +42,6 @@ public class StudentController {
   public void delete(
     @PathVariable("student-id") Integer id
   ) {
-    repository.deleteById(id);
+    this.studentService.delete(id);
   }
 }
