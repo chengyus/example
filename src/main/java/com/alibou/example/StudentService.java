@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -24,16 +25,24 @@ public class StudentService {
     return studentMapper.toStudentResponseDto(savedStudent);
   }
 
-  public List<Student> findAllStudent() {
-    return repository.findAll();
+  public List<StudentResponseDto> findAllStudent() {
+    return repository.findAll()
+            .stream()
+            .map(studentMapper::toStudentResponseDto)
+            .collect(Collectors.toList());
   }
 
-  public Student findStudentById(Integer id) {
-    return repository.findById(id).orElse(new Student());
+  public StudentResponseDto findStudentById(Integer id) {
+    return repository.findById(id)
+            .map(studentMapper::toStudentResponseDto)
+            .orElse(null);
   }
 
-  public List<Student> findStudentsByName(String name) {
-    return repository.findAllByFirstnameContaining(name);
+  public List<StudentResponseDto> findStudentsByName(String name) {
+    return repository.findAllByFirstnameContaining(name)
+            .stream()
+            .map(studentMapper::toStudentResponseDto)
+            .collect(Collectors.toList());
   }
 
   public void delete(Integer id) {
