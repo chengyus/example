@@ -1,11 +1,13 @@
 package com.alibou.example;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 
+@Service
 public class SchoolService {
     private final SchoolMapper schoolMapper;
     private final SchoolRepository schoolRepository;
