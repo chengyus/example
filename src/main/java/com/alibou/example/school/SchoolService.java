@@ -1,10 +1,11 @@
-package com.alibou.example;
+package com.alibou.example.school;
 
+import com.alibou.example.school.SchoolDto;
+import com.alibou.example.school.SchoolMapper;
+import com.alibou.example.school.SchoolRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 
 @Service

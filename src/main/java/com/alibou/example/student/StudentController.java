@@ -1,4 +1,4 @@
-package com.alibou.example;
+package com.alibou.example.student;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
