@@ -1,5 +1,6 @@
 package com.alibou.example.student;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,11 @@ class StudentMapperTest {
   @BeforeEach
   void setUp() {
     System.out.println("Inside the before each method");
+  }
+
+  @AfterEach
+  void tearDown() {
+    System.out.println("Inside the after each method");
   }
 
   @Test
