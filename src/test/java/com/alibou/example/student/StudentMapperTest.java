@@ -1,38 +1,29 @@
 package com.alibou.example.student;
 
 import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class StudentMapperTest {
 
-  @BeforeAll
-  static void beforeAll() {
-    System.out.println("Inside the before all method");
-  }
-
-  @AfterAll
-  static void afterAll() {
-    System.out.println("Inside the after all method");
-  }
+  private StudentMapper mapper;
 
   @BeforeEach
   void setUp() {
-    System.out.println("Inside the before each method");
-  }
-
-  @AfterEach
-  void tearDown() {
-    System.out.println("Inside the after each method");
+    mapper = new StudentMapper();
   }
 
   @Test
-  public void testMethod1() {
-    System.out.println("My first test method");
+  public void shouldMapStudentDtoToStudent() {
+    StudentDto dto = new StudentDto("John", "Doe", "john@mail.com", 1);
+
+    Student student = mapper.toStudent(dto);
+
+    assertEquals(dto.firstname(), student.getFirstname());
+    assertEquals(dto.lastname(), student.getLastname());
+    assertEquals(dto.email(), student.getEmail());
+    assertNotNull(student.getSchool());
+    assertEquals(dto.schoolId(), student.getSchool().getId());
   }
 
-  @Test
-  public void testMethod2() {
-    System.out.println("My second test method");
-  }
 }
