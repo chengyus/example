@@ -1,8 +1,8 @@
 package com.alibou.example.student;
 
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class StudentMapperTest {
 
@@ -24,6 +24,11 @@ class StudentMapperTest {
     assertEquals(dto.email(), student.getEmail());
     assertNotNull(student.getSchool());
     assertEquals(dto.schoolId(), student.getSchool().getId());
+  }
+
+  @Test
+  public void should_throw_null_pointer_exception_when_studentDto_is_null() {
+    assertThrows(NullPointerException.class, () -> mapper.toStudent(null));
   }
 
   @Test
