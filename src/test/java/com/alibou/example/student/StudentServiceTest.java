@@ -12,6 +12,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.management.Query;
 
@@ -101,5 +102,37 @@ class StudentServiceTest {
 
     // Then
     assertEquals(students.size(), responseDtos.size());
+    verify(repository, times(1)).findAll();
+  }
+
+  @Test
+  public void should_return_student_by_id() {
+    // Given
+    Integer studentId = 1;
+    Student student = new Student(
+      "John",
+      "Doe",
+      "john@mail.com",
+      20);
+    student.setId(1);
+
+    // Mock the calls
+    when(repository.findById(studentId)).thenReturn(Optional.of(student));
+    when(studentMapper.toStudentResponseDto(any(Student.class)))
+      .thenReturn(new StudentResponseDto(
+        "John",
+        "Doe",
+        "john@mail.com"
+      ));
+
+    // When
+    StudentResponseDto dto = studentService.findStudentById(studentId);
+
+    // Then
+    assertEquals(dto.firstname(), student.getFirstname());
+    assertEquals(dto.lastname(), student.getLastname());
+    assertEquals(dto.email(), student.getEmail());
+
+    verify(repository, times(1)).findById(studentId);
   }
 }
