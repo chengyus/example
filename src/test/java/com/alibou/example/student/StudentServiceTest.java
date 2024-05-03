@@ -135,4 +135,31 @@ class StudentServiceTest {
 
     verify(repository, times(1)).findById(studentId);
   }
+
+  @Test
+  public void should_find_student_by_name() {
+    // Given
+    String studentName = "John";
+    List<Student> students = new ArrayList<>();
+    students.add(new Student(
+      "John",
+      "Doe",
+      "john@mail.com",
+      20
+    ));
+    // Mock the calls
+    when(repository.findAllByFirstnameContaining(studentName)).thenReturn(students);
+    when(studentMapper.toStudentResponseDto(any(Student.class)))
+      .thenReturn(new StudentResponseDto(
+        "John",
+        "Doe",
+        "john@mail.com"));
+
+    // When
+    var responseDtos = studentService.findStudentsByName(studentName);
+
+    // Then
+    assertEquals(students.size(), responseDtos.size());
+    verify(repository, times(1)).findAllByFirstnameContaining(studentName);
+  }
 }
