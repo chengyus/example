@@ -10,6 +10,11 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.management.Query;
+
 class StudentServiceTest {
 
   // which service we want to test
@@ -28,38 +33,34 @@ class StudentServiceTest {
   }
 
   @Test
-  public  void should_successfully_save_a_student() {
+  public void should_successfully_save_a_student() {
     // Given
     StudentDto dto = new StudentDto(
-      "John",
-      "Doe",
-      "john@mail.com",
-      1
-    );
-    Student student = new Student(
-      "John",
-      "Doe",
-      "john@mail.com",
-      20
-    );
-    Student savedStudent = new Student(
-      "John",
-      "Doe",
-      "john@mail.com",
-      20
-    );
-    savedStudent.setId(1);
-
-    //Mock the calls
-    when(studentMapper.toStudent(dto))
-      .thenReturn(student);
-    when(repository.save(student)).thenReturn(savedStudent);
-    when(studentMapper.toStudentResponseDto(savedStudent))
-      .thenReturn(new StudentResponseDto(
         "John",
         "Doe",
-        "john@mail.com")
-      );
+        "john@mail.com",
+        1);
+    Student student = new Student(
+        "John",
+        "Doe",
+        "john@mail.com",
+        20);
+    Student savedStudent = new Student(
+        "John",
+        "Doe",
+        "john@mail.com",
+        20);
+    savedStudent.setId(1);
+
+    // Mock the calls
+    when(studentMapper.toStudent(dto))
+        .thenReturn(student);
+    when(repository.save(student)).thenReturn(savedStudent);
+    when(studentMapper.toStudentResponseDto(savedStudent))
+        .thenReturn(new StudentResponseDto(
+            "John",
+            "Doe",
+            "john@mail.com"));
 
     // When
     StudentResponseDto responseDto = studentService.saveStudent(dto);
@@ -70,10 +71,35 @@ class StudentServiceTest {
     assertEquals(dto.email(), responseDto.email());
 
     verify(studentMapper, times(1))
-      .toStudent(dto);
+        .toStudent(dto);
     verify(repository, times(1))
-      .save(student);
+        .save(student);
     verify(studentMapper, times(1))
-      .toStudentResponseDto(savedStudent);
+        .toStudentResponseDto(savedStudent);
+  }
+
+  @Test
+  public void should_return_all_students() {
+    // Given
+    List<Student> students = new ArrayList<>();
+    students.add(new Student(
+        "John",
+        "Doe",
+        "john@mail.com",
+        20));
+
+    // Mock the calls
+    when(repository.findAll()).thenReturn(students);
+    when(studentMapper.toStudentResponseDto(any(Student.class)))
+        .thenReturn(new StudentResponseDto(
+            "John",
+            "Doe",
+            "john@mail.com"));
+
+    // When
+    List<StudentResponseDto> responseDtos = studentService.findAllStudent();
+
+    // Then
+    assertEquals(students.size(), responseDtos.size());
   }
 }
